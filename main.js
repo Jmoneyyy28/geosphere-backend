@@ -10,9 +10,9 @@ const config = require('./config/config');
 // DB Config
 const dbConnection = {
     host: 'sql12.freemysqlhosting.net',
-    user: 'sql12741860',
-    password: 'tmnRHyhb9l',
-    database: 'sql12741860'
+    user: 'sql12743624',
+    password: 'U5cGRwGsq4',
+    database: 'sql12743624'
 }
 
 // Middlewares
@@ -26,11 +26,15 @@ app.use((req, res, next) => {
 const helloWorld = require('./app/hello-world')();
 const topics = require('./app/topics')(dbConnection);
 const authentication = require('./app/authentication')(dbConnection);
+const student = require('./app/student')(dbConnection);
+const badge = require('./app/badge')(dbConnection);
 
 // Routes
 app.use(helloWorld);
 app.use(topics);
 app.use(authentication);
+app.use(student);
+app.use(badge);
 
 app.listen(config.port, () => {
     console.log(`Listening on port: ${config.port}...`);

@@ -15,7 +15,7 @@ module.exports = (route, controller) => {
             const lastName = req.body.lastName;
             const idnumber = req.body.idnumber;
             const [rows, fields] = await controller.register(username, password, firstName,lastName,idnumber)
-            res.send('hello');
+            res.send('Success');
         }));
 
         
