@@ -28,6 +28,8 @@ const topics = require('./app/topics')(dbConnection);
 const authentication = require('./app/authentication')(dbConnection);
 const student = require('./app/student')(dbConnection);
 const badge = require('./app/badge')(dbConnection);
+const feedback = require('./app/feeedback')(dbConnection);
+
 
 // Routes
 app.use(helloWorld);
@@ -35,6 +37,7 @@ app.use(topics);
 app.use(authentication);
 app.use(student);
 app.use(badge);
+app.use(feedback);
 
 app.listen(config.port, () => {
     console.log(`Listening on port: ${config.port}...`);

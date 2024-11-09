@@ -1,9 +1,9 @@
 const express = require('express');
 
 module.exports = (route, controller) => {    
-    route.use('/leaderboard', express.Router()
+    route.use('/feedback', express.Router()
         .get('/', async (req, res) => {
-            const [rows, fields] = await controller.getStudents();
+            const [rows, fields] = await controller.getFeedback();
             res.send(rows);
         }));
 
