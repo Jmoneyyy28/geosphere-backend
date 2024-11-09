@@ -5,7 +5,18 @@ module.exports = (route, controller) => {
         .get('/', async (req, res) => {
             const [rows, fields] = await controller.getTopics();
             res.send(rows);
+        })
+        .get('/question', async (req, res) => {
+            const quiz_id = req.query.quiz_id
+            const [rows, fields] = await controller.getQuestion(quiz_id);
+            res.send(rows);
+        })
+        .get('/quiz', async (req, res) => {
+            const topic_id = req.query.topic_id
+            const [rows, fields] = await controller.getQuiz(topic_id);
+            res.send(rows);
         }));
+
 
     return route;
 };

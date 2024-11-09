@@ -6,7 +6,7 @@ module.exports = (route, controller) => {
             const username = req.body.username;
             const password = req.body.password;
             const [rows, fields] = await controller.login(username, password)
-            res.send(rows)
+            res.send( rows)
         })
         .post('/register', async (req, res) => {
             const username = req.body.username;

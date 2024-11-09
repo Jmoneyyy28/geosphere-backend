@@ -1,5 +1,6 @@
 // Dependencies
 const app = require('express')();
+const cors = require('cors');
 
 // Environment
 require('dotenv').config();
@@ -20,7 +21,10 @@ app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*'); // update to match the domain you will make the request from
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     next();
+    
 });
+
+app.use(cors());
 
 // App Components
 const helloWorld = require('./app/hello-world')();
@@ -28,7 +32,7 @@ const topics = require('./app/topics')(dbConnection);
 const authentication = require('./app/authentication')(dbConnection);
 const student = require('./app/student')(dbConnection);
 const badge = require('./app/badge')(dbConnection);
-const feedback = require('./app/feeedback')(dbConnection);
+const feedback = require('./app/feedback')(dbConnection);
 
 
 // Routes

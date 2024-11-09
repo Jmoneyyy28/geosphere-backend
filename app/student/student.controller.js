@@ -15,6 +15,7 @@ module.exports = (dbConnection) => {
         await connection.end();
         return response;
     }
+    
 
     return {
         getStudent,
