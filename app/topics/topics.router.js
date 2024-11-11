@@ -12,11 +12,16 @@ module.exports = (route, controller) => {
             res.send(rows);
         })
         .get('/quiz', async (req, res) => {
+            const lesson_id = req.query.lesson_id
+            const [rows, fields] = await controller.getQuiz(lesson_id);
+            res.send(rows);
+        })
+        .get('/lesson', async (req, res) => {
             const topic_id = req.query.topic_id
-            const [rows, fields] = await controller.getQuiz(topic_id);
+            const [rows, fields] = await controller.getLesson(topic_id);
             res.send(rows);
         }));
-
+        
 
     return route;
 };
