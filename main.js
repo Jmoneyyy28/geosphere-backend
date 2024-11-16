@@ -10,10 +10,10 @@ const config = require('./config/config');
 
 // DB Config
 const dbConnection = {
-    host: 'sql12.freemysqlhosting.net',
-    user: 'sql12743624',
-    password: 'U5cGRwGsq4',
-    database: 'sql12743624'
+    host: '45.130.164.28',
+    user: 'geodev',
+    password: 'geospheredev',
+    database: 'geosphere'
 }
 
 // Middlewares

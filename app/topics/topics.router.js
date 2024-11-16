@@ -20,7 +20,13 @@ module.exports = (route, controller) => {
             const topic_id = req.query.topic_id
             const [rows, fields] = await controller.getLesson(topic_id);
             res.send(rows);
+        })
+        .post('/quiz', async (req, res) => {
+            const lesson_id = req.query.lesson_id
+            const [rows, fields] = await controller.getQuiz(lesson_id);
+            res.send(rows);
         }));
+
         
 
     return route;
