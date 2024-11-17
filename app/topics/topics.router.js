@@ -22,9 +22,11 @@ module.exports = (route, controller) => {
             res.send(rows);
         })
         .post('/quiz', async (req, res) => {
-            const lesson_id = req.query.lesson_id
-            const [rows, fields] = await controller.getQuiz(lesson_id);
-            res.send(rows);
+            const student_id = req.body.student_id;
+            const quiz_id = req.body.quiz_id;
+            const score = req.body.score;
+            const [rows, fields] = await controller.postScore(student_id, quiz_id, score)
+            res.send( 'success')
         }));
 
         
