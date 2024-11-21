@@ -17,7 +17,13 @@ module.exports = (route, controller) => {
             const student_ids = req.body.student_ids;
             const [rows, fields] = await controller.saveStudentList(section_id, teacher_id, student_ids)
             res.send('Success');
+        })
+        .get('/studentfeedback', async (req, res) => {
+            const teacher_id = req.query.teacher_id
+            const [rows, fields] = await controller.getStudentFeedback(teacher_id);
+            res.send(rows);
         }));
+
 
     return route;
 };

@@ -49,11 +49,27 @@ module.exports = (dbConnection) => {
         await connection.end();
         return response;
     }
+    const getStudentFeedback = async (teacher_id) => {
+        const connection = await mysql.createConnection(dbConnection);
+        const query = `
+        SELECT student.*
 
+        FROM student
+
+        WHERE id IN (
+            SELECT student_id
+            FROM map_section_teacher_student
+            WHERE teacher_id = ${teacher_id}
+        )`;
+        const response = await connection.query(query);
+        await connection.end();
+        return response;
+    }
     return {
         getStudent,
         getLeaderboard,
         getStudentList,
-        saveStudentList
+        saveStudentList,
+        getStudentFeedback
     };
 };
