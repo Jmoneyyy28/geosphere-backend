@@ -17,16 +17,7 @@ module.exports = (dbConnection) => {
     }
     const getStudentList = async (teacher_id) => {
         const connection = await mysql.createConnection(dbConnection);
-        const query = `
-        SELECT student.*
-
-        FROM student
-
-        WHERE id NOT IN (
-            SELECT student_id
-            FROM map_section_teacher_student
-            WHERE teacher_id = ${teacher_id}
-        )`;
+        const query = 'SELECT * FROM student'
         const response = await connection.query(query);
         await connection.end();
         return response;
