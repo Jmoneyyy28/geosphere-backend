@@ -15,8 +15,6 @@ const dbConnection = {
 	database: "geosphere",
 };
 
-console.log();
-
 // Middlewares
 app.use((req, res, next) => {
 	res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
