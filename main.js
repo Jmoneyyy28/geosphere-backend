@@ -13,6 +13,7 @@ const dbConnection = {
 	user: "geodev",
 	password: "geospheredev",
 	database: "geosphere",
+	connectTimeout: 600000
 };
 // const dbConnection = {
 // 	host: "45.130.164.28",
