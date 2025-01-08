@@ -1,5 +1,6 @@
 // Dependencies
 const app = require("express")();
+const mysql = require('mysql2/promise');
 
 // Environment
 require("dotenv").config();
@@ -14,7 +15,7 @@ const config = require("./config/config");
 // 	password: "geospheredev",
 // 	database: "geosphere",
 // };
-const dbConnection = {
+const conn = {
 	host: "45.130.164.28",
 	user: "geodev",
 	database: "geosphere",
@@ -27,6 +28,7 @@ const dbConnection = {
 	enableKeepAlive: true,
 	keepAliveInitialDelay: 0,
 }
+const dbConnection = await mysql.createPool(conn);
 
 // Middlewares
 app.use((req, res, next) => {

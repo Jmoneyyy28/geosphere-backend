@@ -2,7 +2,7 @@ const { response } = require('express');
 const mysql = require('mysql2/promise');
 
 module.exports = (dbConnection) => {
-    const connection = mysql.createPool(dbConnection);
+    const connection = dbConnection.getConnection();
 
     const getTopics = async () => {
         // const connection = await mysql.createConnection(dbConnection);
