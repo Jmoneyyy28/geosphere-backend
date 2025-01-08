@@ -8,28 +8,28 @@ module.exports = (dbConnection) => {
         // const connection = await mysql.createConnection(dbConnection);
         const query = "SELECT * FROM topic";
         const response = await connection.query(query);
-        await connection.end();
+        // await connection.end();
         return response;
     }
     const getQuiz = async (lesson_id) => {
         // const connection = await mysql.createConnection(dbConnection);
         const query = `select * from quiz where lesson_id = ${lesson_id}`
         const response = await connection.query(query);
-        await connection.end();
+        // await connection.end();
         return response;
     }
     const getQuestion = async (quiz_id) => {
         // const connection = await mysql.createConnection(dbConnection);
         const query = `select * from question where quiz_id = ${quiz_id}`
         const response = await connection.query(query);
-        await connection.end();
+        // await connection.end();
         return response;
     }
     const getLesson = async (topic_id) => {
         // const connection = await mysql.createConnection(dbConnection);
         const query = `select * from lesson where topic_id = ${topic_id}`
         const response = await connection.query(query);
-        await connection.end();
+        // await connection.end();
         return response;
     }
     const postScore = async (student_id, quiz_id, score) => {
@@ -43,7 +43,7 @@ module.exports = (dbConnection) => {
             query = `INSERT INTO score (student_id, quiz_id, score) values (${student_id}, ${quiz_id}, ${score})`;
         }
         const response = await connection.query(query);
-        await connection.end();
+        // await connection.end();
         return response;
     }
     const getScore = async (student_id) => {
@@ -68,14 +68,14 @@ module.exports = (dbConnection) => {
 
                     GROUP BY student.id, topic.id, topic.topic_name`
         const response = await connection.query(query);
-        await connection.end();
+        // await connection.end();
         return response;
     }
     const postProgress = async(student_id, progressName, topic_id) => {
         // const connection = await mysql.createConnection(dbConnection);
         const query = `INSERT INTO map_student_progress (student_id, progress_id, progress_isDone, topic_id) values (${student_id}, (SELECT id FROM progress WHERE LOWER(name) = LOWER('${progressName}')), true, ${topic_id})`
         const response = await connection.query(query);
-        await connection.end();
+        // await connection.end();
         return response;
     }
     const getStudentProgress = async (student_id, progressName, topic_id) => {
@@ -97,7 +97,7 @@ module.exports = (dbConnection) => {
 
                         GROUP BY student.id, topic.topic_name, progress.name, map_student_progress.progress_isDone`
         const response = await connection.query(query);
-        await connection.end();
+        // await connection.end();
         return response;
 
     }
@@ -122,7 +122,7 @@ module.exports = (dbConnection) => {
 
                         GROUP BY student.id, topic.id, progress.name, map_student_progress.progress_isDone, map_section_teacher_student.teacher_id`
         const response = await connection.query(query);
-        await connection.end();
+        // await connection.end();
         return response;
     }
     return {
