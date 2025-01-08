@@ -40,6 +40,7 @@ app.use((req, res, next) => {
 });
 
 mysql.createPool(conn, (dbConnection) => {
+	console.log("ASD");
 	// App Components
 	const helloWorld = require("./app/hello-world")();
 	const topics = require("./app/topics")(dbConnection);
