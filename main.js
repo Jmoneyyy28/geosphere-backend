@@ -39,7 +39,7 @@ app.use((req, res, next) => {
 	next();
 });
 
-mysql.createPool(conn, (err, dbConnection) => {
+mysql.createPool(conn, (dbConnection) => {
 	// App Components
 	const helloWorld = require("./app/hello-world")();
 	const topics = require("./app/topics")(dbConnection);
