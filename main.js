@@ -1,6 +1,5 @@
 // Dependencies
 const app = require("express")();
-const mysql = require('mysql2/promise');
 
 // Environment
 require("dotenv").config();
@@ -15,7 +14,7 @@ const config = require("./config/config");
 // 	password: "geospheredev",
 // 	database: "geosphere",
 // };
-const conn = {
+const dbConnection = {
 	host: "45.130.164.28",
 	user: "geodev",
 	database: "geosphere",
@@ -39,27 +38,23 @@ app.use((req, res, next) => {
 	next();
 });
 
-mysql.createPool(conn, (dbConnection) => {
-	console.log("ASD");
-	// App Components
-	const helloWorld = require("./app/hello-world")();
-	const topics = require("./app/topics")(dbConnection);
-	const authentication = require("./app/authentication")(dbConnection);
-	const student = require("./app/student")(dbConnection);
-	const badge = require("./app/badge")(dbConnection);
-	const feedback = require("./app/feedback")(dbConnection);
+const helloWorld = require("./app/hello-world")();
+const topics = require("./app/topics")(dbConnection);
+const authentication = require("./app/authentication")(dbConnection);
+const student = require("./app/student")(dbConnection);
+const badge = require("./app/badge")(dbConnection);
+const feedback = require("./app/feedback")(dbConnection);
 
-	// Routes
-	app.use(helloWorld);
-	app.use(topics);
-	app.use(authentication);
-	app.use(student);
-	app.use(badge);
-	app.use(feedback);
+// Routes
+app.use(helloWorld);
+app.use(topics);
+app.use(authentication);
+app.use(student);
+app.use(badge);
+app.use(feedback);
 
-	app.listen(config.port, () => {
-		console.log(`Listening on port: ${config.port}...`);
-	});
+app.listen(config.port, () => {
+	console.log(`Listening on port: ${config.port}...`);
 });
 
 // COMPONENT
