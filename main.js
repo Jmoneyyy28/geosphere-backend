@@ -27,8 +27,7 @@ const conn = {
 	queueLimit: 0,
 	enableKeepAlive: true,
 	keepAliveInitialDelay: 0,
-}
-const dbConnection = mysql.createPool(conn);
+};
 
 // Middlewares
 app.use((req, res, next) => {
@@ -40,24 +39,26 @@ app.use((req, res, next) => {
 	next();
 });
 
-// App Components
-const helloWorld = require("./app/hello-world")();
-const topics = require("./app/topics")(dbConnection);
-const authentication = require("./app/authentication")(dbConnection);
-const student = require("./app/student")(dbConnection);
-const badge = require("./app/badge")(dbConnection);
-const feedback = require("./app/feedback")(dbConnection);
+mysql.createPool(conn, (err, dbConnection) => {
+	// App Components
+	const helloWorld = require("./app/hello-world")();
+	const topics = require("./app/topics")(dbConnection);
+	const authentication = require("./app/authentication")(dbConnection);
+	const student = require("./app/student")(dbConnection);
+	const badge = require("./app/badge")(dbConnection);
+	const feedback = require("./app/feedback")(dbConnection);
 
-// Routes
-app.use(helloWorld);
-app.use(topics);
-app.use(authentication);
-app.use(student);
-app.use(badge);
-app.use(feedback);
+	// Routes
+	app.use(helloWorld);
+	app.use(topics);
+	app.use(authentication);
+	app.use(student);
+	app.use(badge);
+	app.use(feedback);
 
-app.listen(config.port, () => {
-	console.log(`Listening on port: ${config.port}...`);
+	app.listen(config.port, () => {
+		console.log(`Listening on port: ${config.port}...`);
+	});
 });
 
 // COMPONENT
