@@ -28,7 +28,7 @@ const conn = {
 	enableKeepAlive: true,
 	keepAliveInitialDelay: 0,
 }
-const dbConnection = await mysql.createPool(conn);
+const dbConnection = mysql.createPool(conn);
 
 // Middlewares
 app.use((req, res, next) => {
