@@ -1,10 +1,12 @@
 const mysql = require('mysql2/promise');
 
 module.exports = (dbConnection) => {
-    const register = async (username, password, firstName, lastName, idnumber) => {
+    const register = async (username, password, firstName, lastName, idnumber, section) => {
         const connection = await mysql.createConnection(dbConnection);
-        const query = `INSERT INTO student (username, password, first_name, last_name, id_number) values ('${username}', '${password}', '${firstName}','${lastName}','${idnumber}')`;
+        const query = `INSERT INTO student (username, password, first_name, last_name, id_number) values ('${username}', '${password}', '${firstName}','${lastName}','${idnumber}');`;
         response = await connection.query(query);
+        const sectionQuery = `insert into map_section_teacher_student (student_id, section_id) values ((select id from student where username = '${username}'), (select id from section where section_name = '${section}'))`;
+        response = await connection.query(sectionQuery);
         await connection.end();
         return response;
     }
