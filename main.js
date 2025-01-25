@@ -45,6 +45,7 @@ const authentication = require("./app/authentication")(dbConnection);
 const student = require("./app/student")(dbConnection);
 const badge = require("./app/badge")(dbConnection);
 const feedback = require("./app/feedback")(dbConnection);
+const section = require("./app/section")(dbConnection);
 
 // Routes
 app.use(helloWorld);
@@ -53,6 +54,7 @@ app.use(authentication);
 app.use(student);
 app.use(badge);
 app.use(feedback);
+app.use(section);
 
 app.listen(config.port, () => {
 	console.log(`Listening on port: ${config.port}...`);
