@@ -13,6 +13,7 @@ const dbConnection = {
 	user: "geodev",
 	password: "geospheredev",
 	database: "geosphere",
+	connectTimeout: 600000
 };
 // const dbConnection = {
 // 	host: "45.130.164.28",
@@ -26,7 +27,7 @@ const dbConnection = {
 // 	queueLimit: 0,
 // 	enableKeepAlive: true,
 // 	keepAliveInitialDelay: 0,
-// }
+// };
 
 // Middlewares
 app.use((req, res, next) => {
@@ -38,7 +39,6 @@ app.use((req, res, next) => {
 	next();
 });
 
-// App Components
 const helloWorld = require("./app/hello-world")();
 const topics = require("./app/topics")(dbConnection);
 const authentication = require("./app/authentication")(dbConnection);
