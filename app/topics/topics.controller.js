@@ -119,8 +119,6 @@ module.exports = (dbConnection) => {
                                 AND map_student_progress.student_id = student.id
                                 AND map_student_progress.topic_id = topic.id
 
-                                WHERE teacher_id = ${teacher_id}
-
                         GROUP BY student.id, topic.id, progress.name, map_student_progress.progress_isDone, map_section_teacher_student.teacher_id`
         const response = await connection.query(query);
         await connection.end();
