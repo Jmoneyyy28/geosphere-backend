@@ -104,7 +104,7 @@ module.exports = (dbConnection) => {
     }
     const getAllStudentProgress = async (teacher_id) => {
         const connection = await mysql.createConnection(dbConnection);
-        const query = `SELECT student.id, topic.id AS topic_id, progress.name, map_student_progress.progress_isDone, map_section_teacher_student.teacher_id
+        const query = `SELECT student.id, student.id_number, topic.id AS topic_id, progress.name, map_student_progress.progress_isDone, map_section_teacher_student.teacher_id
 
                                 FROM student
 
