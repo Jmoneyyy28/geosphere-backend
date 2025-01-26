@@ -104,7 +104,7 @@ module.exports = (dbConnection) => {
     }
     const getAllStudentProgress = async (teacher_id) => {
         const connection = await mysql.createConnection(dbConnection);
-        const query = `SELECT student.id, student.id_number, topic.id AS topic_id, progress.name, map_student_progress.progress_isDone, map_section_teacher_student.teacher_id
+        const query = `SELECT DISTINCT student.id, student.id_number, topic.id AS topic_id, progress.name, map_student_progress.progress_isDone
 
                                 FROM student
 
@@ -119,7 +119,7 @@ module.exports = (dbConnection) => {
                                 AND map_student_progress.student_id = student.id
                                 AND map_student_progress.topic_id = topic.id
 
-                        GROUP BY student.id, topic.id, progress.name, map_student_progress.progress_isDone, map_section_teacher_student.teacher_id`
+                        GROUP BY student.id, topic.id, progress.name, map_student_progress.progress_isDone`
         const response = await connection.query(query);
         await connection.end();
         return response;
