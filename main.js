@@ -14,6 +14,19 @@ const dbConnection = {
 	password: "geospheredev",
 	database: "geosphere",
 };
+// const dbConnection = {
+// 	host: "45.130.164.28",
+// 	user: "geodev",
+// 	database: "geosphere",
+// 	password: "geospheredev",
+// 	waitForConnections: true,
+// 	connectionLimit: 10,
+// 	maxIdle: 10, // max idle connections, the default value is the same as `connectionLimit`
+// 	idleTimeout: 60000, // idle connections timeout, in milliseconds, the default value 60000
+// 	queueLimit: 0,
+// 	enableKeepAlive: true,
+// 	keepAliveInitialDelay: 0,
+// }
 
 // Middlewares
 app.use((req, res, next) => {
@@ -32,6 +45,7 @@ const authentication = require("./app/authentication")(dbConnection);
 const student = require("./app/student")(dbConnection);
 const badge = require("./app/badge")(dbConnection);
 const feedback = require("./app/feedback")(dbConnection);
+const section = require("./app/section")(dbConnection);
 
 // Routes
 app.use(helloWorld);
@@ -40,6 +54,7 @@ app.use(authentication);
 app.use(student);
 app.use(badge);
 app.use(feedback);
+app.use(section);
 
 app.listen(config.port, () => {
 	console.log(`Listening on port: ${config.port}...`);
