@@ -1,3 +1,4 @@
+const { response } = require('express');
 const mysql = require('mysql2/promise');
 
 module.exports = (dbConnection) => {
@@ -56,11 +57,19 @@ module.exports = (dbConnection) => {
         await connection.end();
         return response;
     }
+     const deleteStudent = async (student_id) => {
+        const connection = await mysql.createConnection(dbConnection);
+        const query = `Delete from student where id = ${student_id}`;
+        const response = await connection.query(query);
+        await connection.end();
+        return response;
+     }
     return {
         getStudent,
         getLeaderboard,
         getStudentList,
         saveStudentList,
-        getStudentFeedback
+        getStudentFeedback,
+        deleteStudent
     };
 };

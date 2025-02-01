@@ -22,6 +22,11 @@ module.exports = (route, controller) => {
             const teacher_id = req.query.teacher_id
             const [rows, fields] = await controller.getStudentFeedback(teacher_id);
             res.send(rows);
+        })
+        .post('/deleteStudent', async (req, res) => {
+            const student_id = req.body.student_id
+            const [rows, fields] = await controller.deleteStudent(student_id);
+            res.send(rows);
         }));
 
 
