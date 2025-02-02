@@ -18,7 +18,7 @@ module.exports = (dbConnection) => {
     }
     const getStudentList = async (teacher_id) => {
         const connection = await mysql.createConnection(dbConnection);
-        const query = 'select * from student left join map_section_teacher_student AS a on student.id = a.student_id left join section on section.id = a.section_id'
+        const query = 'select * from student join map_section_teacher_student AS a on student.id = a.student_id join section on section.id = a.section_id'
         const response = await connection.query(query);
         await connection.end();
         return response;
